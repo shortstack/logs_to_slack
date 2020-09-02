@@ -1,0 +1,19 @@
+[Unit]
+Description=Logs to Slack
+After=multi-user.target
+
+[Service]
+Type=idle
+
+WorkingDirectory=/opt
+ExecStart=/usr/bin/python logs_to_slack.py
+#ExecStart=/usr/bin/python app.py runserver
+
+# Connects standard output to /dev/null
+StandardOutput=null
+
+# Connects standard error to journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
