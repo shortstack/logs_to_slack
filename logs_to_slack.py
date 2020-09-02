@@ -4,8 +4,9 @@ import requests
 import time
 import json
 
+
 def follow(thefile):
-    thefile.seek(0,2)
+    thefile.seek(0, 2)
     while True:
         line = thefile.readline()
         if not line:
@@ -13,16 +14,17 @@ def follow(thefile):
             continue
         yield line
 
+
 def logs_to_slack():
 
     logfile = open('/path/to/logs/omg', 'r')
     loglines = follow(logfile)
 
-    for line in loglines: 
+    for line in loglines:
 
-        if "unicorn" in line:           # you can parse for specific entries by keyword, or comment this out to include everything  
-    
-            line = json.loads(line) 
+        if "unicorn" in line:           # you can parse for specific entries by keyword,
+                                        # or comment out to include everything
+            line = json.loads(line)
 
             field1 = line["field1"]
             field2 = line["field2"]
@@ -58,6 +60,8 @@ def logs_to_slack():
                 ]
             }
 
-            response = requests.post(webhook_url, data=json.dumps(data), headers={'Content-Type': 'application/json'})
+            response = requests.post(webhook_url,
+                        data=json.dumps(data),
+                        headers={'Content-Type': 'application/json'})
 
 logs_to_slack()
