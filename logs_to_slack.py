@@ -15,7 +15,7 @@ def follow(thefile):
 
 def logs_to_slack():
 
-    logfile = open('/Users/shortstack/Downloads/test.json', 'r')
+    logfile = open('/path/to/logs/omg', 'r')
     loglines = follow(logfile)
 
     for line in loglines: 
